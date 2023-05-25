@@ -95,6 +95,7 @@ const Onboarding: React.FC = () => {
             return (
                 <StepComponent
                     data={data}
+                    step={step}
                     onChange={handleInputChange}
                     onBack={handleBack}
                     onNext={handleNext}
@@ -119,7 +120,8 @@ const Onboarding: React.FC = () => {
                         Select Sequence:
                     </label>
                     <select
-                        id="sequenceSelect"
+                        id="sequence-selector"
+                        data-testid="step-sequence-dropdown"
                         className="border rounded p-2"
                         value={sequenceOption}
                         onChange={handleSequenceChange}

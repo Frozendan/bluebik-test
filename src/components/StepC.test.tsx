@@ -59,7 +59,7 @@ describe('StepC Component', () => {
 
         render(<StepC data={testData} onPurposeSelection={onChange} onBack={onBack} onComplete={onComplete} />);
 
-        const completeButton = screen.getByText('Complete');
+        const completeButton = screen.getByText('Next');
 
         fireEvent.click(completeButton);
 

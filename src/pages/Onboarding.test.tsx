@@ -39,7 +39,7 @@ describe('Onboarding Component', () => {
 
         fireEvent.click(checkboxes[3]);
 
-        const completeButton = screen.getByText('Complete');
+        const completeButton = screen.getByText('Next');
 
         fireEvent.click(completeButton);
 
@@ -47,5 +47,36 @@ describe('Onboarding Component', () => {
 
         expect(stepDTitle).toBeInTheDocument();
 
+    });
+});
+
+describe('Onboarding - Change Step Order', () => {
+    it('changes step order when selecting a different sequence', () => {
+        render(<Onboarding />);
+
+        // Select the dropdown for step sequence
+        const dropdown = screen.getByTestId('step-sequence-dropdown');
+        // Change the value of the dropdown to the second option
+        fireEvent.change(dropdown, { target: { value: '2' } });
+        const fullNameInput = screen.getByPlaceholderText('Full Name');
+        const idNumberInput = screen.getByPlaceholderText('ID Number');
+
+        fireEvent.change(fullNameInput, { target: { value: 'John Doe' } });
+        fireEvent.change(idNumberInput, { target: { value: '1234567890' } });
+
+        fireEvent.click(screen.getByText('Next'));
+
+
+        // Check if the StepC component is rendered before StepB
+        expect(screen.getByText('Step C - Purpose')).toBeInTheDocument();
+        expect(screen.queryByText('Step B - Additional Information')).toBeNull();
+
+        // Proceed to the next step
+        fireEvent.click(screen.getByText('Next'));
+
+
+        // Check if StepB is rendered after StepC
+        expect(screen.getByText('Step B - Additional Information')).toBeInTheDocument();
+        expect(screen.queryByText('Step C - Purpose')).toBeNull();
     });
 });
