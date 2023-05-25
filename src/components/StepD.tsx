@@ -1,5 +1,5 @@
 import React from 'react';
-import {purposeList} from "./Onboarding.tsx";
+import {purposeList} from "../pages/Onboarding.tsx";
 interface StepDProps {
     data: {
         fullName: string,

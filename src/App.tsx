@@ -1,5 +1,5 @@
 import './App.css';
-import Onboarding from "./components/Onboarding.tsx";
+import Onboarding from "./pages/Onboarding.tsx";
 
 function App() {
 
