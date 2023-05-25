@@ -1,16 +1,16 @@
 import React from 'react';
-import {purposeList} from "./Onboarding.tsx";
+import {purposeList} from "../pages/Onboarding.tsx";
 
 interface StepCProps {
     data: {
         purposes: string[];
     };
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    onPurposeSelection: (event: React.ChangeEvent<HTMLInputElement>) => void;
     onBack: () => void;
     onComplete: () => void;
 }
 
-const StepC: React.FC<StepCProps> = ({ data, onChange, onBack, onComplete }) => {
+const StepC: React.FC<StepCProps> = ({ data, onPurposeSelection, onBack, onComplete }) => {
     return (
         <div>
             <h2 className="text-2xl font-bold mb-4">Step C - Purpose</h2>
@@ -20,9 +20,10 @@ const StepC: React.FC<StepCProps> = ({ data, onChange, onBack, onComplete }) => 
                         <input
                             type="checkbox"
                             name="purpose"
+                            role="checkbox"
                             value={item.purposeValue}
                             checked={data.purposes.includes(item.purposeValue)}
-                            onChange={onChange}
+                            onChange={onPurposeSelection}
                             className="mr-2"
                         />
                         {item.purposeText}
@@ -34,7 +35,7 @@ const StepC: React.FC<StepCProps> = ({ data, onChange, onBack, onComplete }) => 
                     Back
                 </button>
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={onComplete}>
-                    Complete
+                    Next
                 </button>
             </div>
         </div>
